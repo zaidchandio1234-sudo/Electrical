@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EnergyWise  | AI-Powered Energy Management</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <path d="M20 2L6 20h6v16h8v-12h8v12h8V20h6L20 2z" fill="#10b981" />
+            <circle cx="20" cy="20" r="10" fill="#ffffff" opacity="0.9" />
+          </svg>
+          <span class="logo-text">EnergyWise </span>
+        </div>
+
+        <div class="nav-menu">
+          <a href="#features" class="nav-link">Features</a>
+          <a href="#how-it-works" class="nav-link">How It Works</a>
+          <a href="#demo" class="nav-link">Live Demo</a>
+          <a href="#api" class="nav-link">API</a>
+        </div>
+
+        <div class="nav-actions">
+          <a href="login.html" class="btn btn-outline">Sign In</a>
+          <a href="register.html" class="btn btn-primary">Get Started</a>
+        </div>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            AI-Powered Energy Management
+            <span class="gradient-text">for Smart Homes</span>
+          </h1>
+          <p class="hero-description">
+            <!-- Reduce your energy bills by up to 30% with our intelligent GRU-based -->
+            forecasting and personalized AI recommendations. Real-time
+            monitoring with enterprise-grade analytics.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#demo" class="btn btn-primary btn-large" id="liveDemoBtn">
+              <i class="fas fa-play-circle"></i>
+              Try Live Demo
+            </a>
+            <a href="register.html" class="btn btn-outline btn-large">
+              <i class="fas fa-user-plus"></i>
+              Start Free Trial
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-number" id="avgSavings">15-30%</span>
+              <span class="stat-label">Average Savings</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number" id="realTimeStatus">24/7</span>
+              <span class="stat-label">Real-time Monitoring</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number" id="aiAccuracy">98%</span>
+              <span class="stat-label">AI Accuracy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inside the hero-visualization div -->
+        <div class="hero-visualization">
+          <div class="visualization-card">
+            <div class="viz-header">
+              <h3><i class="fas fa-chart-line"></i> Live Energy Dashboard</h3>
+              <div class="viz-status">
+                <span class="status-dot active"></span>
+                <span>Connected to API</span>
+              </div>
+            </div>
+            <div class="viz-content">
+              <div class="current-usage">
+                <div class="usage-label">Current Usage</div>
+                <div class="usage-value" id="currentUsageValue">-- kW</div>
+                <div class="usage-trend" id="usageTrend">
+                  <i class="fas fa-arrow-up"></i>
+                  <span>Loading...</span>
+                </div>
+              </div>
+              <div class="mini-chart-container">
+                <canvas id="miniUsageChart"></canvas>
+              </div>
+              <div class="viz-stats">
+                <div class="viz-stat">
+                  <div class="viz-stat-label">Today's Cost</div>
+                  <div class="viz-stat-value" id="todayCost">PKR --</div>
+                </div>
+                <div class="viz-stat">
+                  <div class="viz-stat-label">Peak Hour</div>
+                  <div class="viz-stat-value" id="peakHour">--:--</div>
+                </div>
+                <div class="viz-stat">
+                  <div class="viz-stat-label">Carbon Saved</div>
+                  <div class="viz-stat-value" id="carbonSaved">-- kg</div>
+                </div>
+              </div>
+            </div>
+            <button class="btn-viz-action" id="generateForecastBtn">
+              <i class="fas fa-magic"></i>
+              Generate AI Forecast
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    30 Years Wisdom Insights
+<div class="wisdom-insights">
+    <div class="wisdom-header">
+        <div class="wisdom-icon">
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+        <div class="wisdom-title">
+            <!-- <h2><i class="fas fa-crown"></i> 30 Years of Energy Wisdom</h2> -->
+            <p>Insights from decades of energy management experience</p>
+        </div>
+        <div class="wisdom-stats">
+            <div class="wisdom-stat">
+                <!-- <div class="wisdom-stat-value" id="yearsExperience">30</div> -->
+                <!-- <div class="wisdom-stat-label">Years Experience</div> -->
+            </div>
+            <div class="wisdom-stat">
+                <div class="wisdom-stat-value" id="householdsAnalyzed">2K+</div>
+                <div class="wisdom-stat-label">Households</div>
+            </div>
+            <div class="wisdom-stat">
+                <div class="wisdom-stat-value" id="savingsGenerated">10k+</div>
+                <div class="wisdom-stat-label">Savings Generated</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="wisdomInsightsContainer">
+        <!-- Dynamic wisdom insights will be loaded here -->
+    </div>
+    
+    <button class="btn btn-outline" id="loadMoreWisdom" style="width: 100%; margin-top: 20px;">
+        <i class="fas fa-brain"></i> Load More Energy Wisdom
+    </button>
+</div>
+
+<!-- Enhanced Chart Legend -->
+<div class="chart-legend" id="chartLegend">
+    <div class="legend-item">
+        <div class="legend-color legend-peak"></div>
+        <span>Peak Hours (2PM-8PM)</span>
+    </div>
+    <div class="legend-item">
+        <div class="legend-color legend-offpeak"></div>
+        <span>Off-Peak (12AM-6AM)</span>
+    </div>
+    <div class="legend-item">
+        <div class="legend-color legend-average"></div>
+        <span>7-Day Average</span>
+    </div>
+</div>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+      <div class="section-container">
+        <div class="section-header">
+          <h2>Enterprise-Grade Features</h2>
+          <p>Everything you need for smart energy management</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <h3>AI Forecasting</h3>
+            <p>
+              GRU neural network predicts 7-day energy usage with 98% accuracy
+            </p>
+            <div class="feature-stats">
+              <span class="stat-badge">Real-time</span>
+              <span class="stat-badge">ML-powered</span>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <h3>Smart Advisor</h3>
+            <p>LLM-powered recommendations to reduce your energy bills</p>
+            <div class="feature-stats">
+              <span class="stat-badge">Personalized</span>
+              <span class="stat-badge">AI-driven</span>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-chart-pie"></i>
+            </div>
+            <h3>Advanced Analytics</h3>
+            <p>Detailed consumption patterns and savings insights</p>
+            <div class="feature-stats">
+              <span class="stat-badge">Real-time</span>
+              <span class="stat-badge">Historical</span>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3>Real-time Monitoring</h3>
+            <p>Live tracking of all connected devices and circuits</p>
+            <div class="feature-stats">
+              <span class="stat-badge">24/7</span>
+              <span class="stat-badge">Alerts</span>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <h3>Smart Billing</h3>
+            <p>Automated billing with cost predictions and savings tracking</p>
+            <div class="feature-stats">
+              <span class="stat-badge">Automated</span>
+              <span class="stat-badge">Predictive</span>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-plug"></i>
+            </div>
+            <h3>Device Management</h3>
+            <p>Control and monitor all smart devices from one dashboard</p>
+            <div class="feature-stats">
+              <span class="stat-badge">IoT</span>
+              <span class="stat-badge">Smart Home</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demo Section -->
+    <section class="demo-section" id="demo">
+      <div class="section-container">
+        <div class="section-header">
+          <h2>Live Demo</h2>
+          <p>Try our AI forecasting system in real-time</p>
+        </div>
+
+        <div class="demo-container">
+          <div class="demo-controls">
+            <div class="control-group">
+              <label for="demoType">Demo Type</label>
+              <select id="demoType" class="demo-select">
+                <option value="forecast">7-Day Forecast</option>
+                <option value="realtime">Real-time Monitoring</option>
+                <option value="savings">Savings Calculator</option>
+                <option value="analytics">Usage Analytics</option>
+              </select>
+            </div>
+
+            <div class="control-group">
+              <label for="dataSource">Data Source</label>
+              <select id="dataSource" class="demo-select">
+                <option value="live">Live Simulation</option>
+                <option value="sample">Sample Data</option>
+                <option value="upload">Upload CSV</option>
+              </select>
+            </div>
+
+            <button class="btn btn-primary" id="runDemoBtn">
+              <i class="fas fa-play"></i>
+              Run Demo
+            </button>
+          </div>
+
+          <div class="demo-results">
+            <div class="demo-chart-container">
+              <canvas id="demoChart"></canvas>
+            </div>
+
+            <!-- In the demo-stats section -->
+            <div class="demo-stats">
+              <div class="demo-stat">
+                <div class="demo-stat-label">Predicted Weekly Usage</div>
+                <div class="demo-stat-value" id="predictedWeekly">-- kWh</div>
+              </div>
+              <div class="demo-stat">
+                <div class="demo-stat-label">Potential Savings</div>
+                <div class="demo-stat-value" id="potentialSavings">PKR --</div>
+              </div>
+              <div class="demo-stat">
+                <div class="demo-stat-label">AI Confidence</div>
+                <div class="demo-stat-value" id="aiConfidence">-- %</div>
+              </div>
+            </div>
+
+            <div class="demo-actions">
+              <button class="btn btn-outline" id="exportDemoBtn">
+                <i class="fas fa-download"></i>
+                Export Data
+              </button>
+              <button class="btn btn-primary" id="viewDetailsBtn">
+                <i class="fas fa-chart-bar"></i>
+                View Details
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- API Status Section -->
+    <section class="api-section" id="api">
+      <div class="section-container">
+        <div class="section-header">
+          <h2>API Status & Integration</h2>
+          <p>Connect to our enterprise API for seamless integration</p>
+        </div>
+
+        <div class="api-status-container">
+          <div class="api-status-card">
+            <div class="api-status-header">
+              <h3><i class="fas fa-server"></i> API Server Status</h3>
+              <div class="api-status-indicator" id="apiStatusIndicator">
+                <span class="status-dot"></span>
+                <span>Checking...</span>
+              </div>
+            </div>
+
+            <div class="api-endpoints">
+              <h4>Available Endpoints:</h4>
+              <div class="endpoint-list">
+                <div class="endpoint">
+                  <span class="endpoint-method get">GET</span>
+                  <span class="endpoint-path">/api/v1/health</span>
+                  <span class="endpoint-desc">Health check</span>
+                </div>
+                <div class="endpoint">
+                  <span class="endpoint-method post">POST</span>
+                  <span class="endpoint-path">/api/v1/forecast/generate</span>
+                  <span class="endpoint-desc">Generate forecast</span>
+                </div>
+                <div class="endpoint">
+                  <span class="endpoint-method get">GET</span>
+                  <span class="endpoint-path">/api/v1/analytics</span>
+                  <span class="endpoint-desc">Get analytics</span>
+                </div>
+                <div class="endpoint">
+                  <span class="endpoint-method post">POST</span>
+                  <span class="endpoint-path">/api/v1/auth/login</span>
+                  <span class="endpoint-desc">User authentication</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="api-stats">
+              <div class="api-stat">
+                <div class="api-stat-label">Response Time</div>
+                <div class="api-stat-value" id="apiResponseTime">-- ms</div>
+              </div>
+              <div class="api-stat">
+                <div class="api-stat-label">Uptime</div>
+                <div class="api-stat-value" id="apiUptime">-- %</div>
+              </div>
+              <div class="api-stat">
+                <div class="api-stat-label">Active Users</div>
+                <div class="api-stat-value" id="apiActiveUsers">--</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="api-integration-card">
+            <h3><i class="fas fa-code"></i> Quick Integration</h3>
+            <div class="code-snippet">
+              <pre><code id="apiCodeSnippet">
+// JavaScript API Example
+const API_URL = 'http://localhost:8000/api/v1';
+
+async function generateForecast() {
+    const response = await fetch(`${API_URL}/forecast/generate`, {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer YOUR_TOKEN' }
+    });
+    return await response.json();
+}</code></pre>
+            </div>
+            <button class="btn btn-outline" id="copyCodeBtn">
+              <i class="fas fa-copy"></i>
+              Copy Code
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="section-container">
+        <div class="cta-content">
+          <h2>Ready to Save on Your Energy Bills?</h2>
+          <p>
+            <!-- Join thousands of customers who save 15-30% monthly with EnergyWise -->
+            
+          </p>
+
+          <div class="cta-actions">
+            <a href="register.html" class="btn btn-primary btn-xlarge">
+              <i class="fas fa-rocket"></i>
+              Start Free 14-Day Trial
+            </a>
+            <a href="login.html" class="btn btn-outline btn-xlarge">
+              <i class="fas fa-sign-in-alt"></i>
+              Sign In to Dashboard
+            </a>
+          </div>
+
+          <div class="cta-features">
+            <div class="cta-feature">
+              <i class="fas fa-check-circle"></i>
+              <span>No credit card required</span>
+            </div>
+            <div class="cta-feature">
+              <i class="fas fa-check-circle"></i>
+              <span>Full access to all features</span>
+            </div>
+            <div class="cta-feature">
+              <i class="fas fa-check-circle"></i>
+              <span>24/7 customer support</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="footer-container">
+        <div class="footer-section">
+          <div class="footer-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M16 2L4 14h4v12h6v-8h4v8h6V14h4L16 2z" fill="#10b981" />
+            </svg>
+            <span class="logo-text">EnergyWise </span>
+          </div>
+          <p class="footer-description">
+            AI-powered energy management platform for homes and businesses.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>Product</h4>
+          <a href="dashboard.html" class="footer-link">Dashboard</a>
+          <a href="forecast.html" class="footer-link">AI Forecasting</a>
+          <a href="billing.html" class="footer-link">Smart Billing</a>
+          <a href="devices.html" class="footer-link">Device Management</a>
+        </div>
+
+        <div class="footer-section">
+          <h4>Company</h4>
+          <a href="#" class="footer-link">About Us</a>
+          <a href="#" class="footer-link">Careers</a>
+          <a href="#" class="footer-link">Blog</a>
+          <a href="#" class="footer-link">Press</a>
+        </div>
+
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <a href="#" class="footer-link">Documentation</a>
+          <a href="#" class="footer-link">API Reference</a>
+          <a href="#" class="footer-link">Support</a>
+          <a href="#" class="footer-link">Community</a>
+        </div>
+
+        <!-- <div class="footer-section">
+          <h4>Contact</h4>
+          <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> support@energywisepro.com</p>
+            <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+            <p><i class="fas fa-map-marker-alt"></i> San Francisco, CA</p>
+          </div>
+        </div> -->
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 EnergyWise . All rights reserved.</p>
+        <div class="footer-links">
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+          <a href="#" class="footer-link">Cookie Policy</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

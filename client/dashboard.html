@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnergyWise Pro | Real-time Dashboard</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff, #f0fdf4);
+            color: #111827;
+        }
+
+        /* HEADER */
+        .header {
+            background: #fff;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            gap: .75rem;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            color: #fff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-text h1 {
+            font-size: 1.4rem;
+            white-space: nowrap;
+        }
+
+        .logo-text span {
+            font-size: .85rem;
+            color: #6b7280;
+            white-space: nowrap;
+        }
+
+        .home-button {
+            padding: 10px 18px;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            color: #fff;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            gap: 8px;
+        }
+
+        .status {
+            display: flex;
+            gap: .75rem;
+            flex-wrap: wrap;
+        }
+
+        .status-indicator,
+        .last-update {
+            padding: 8px 14px;
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: .85rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+        /* MAIN */
+        .main-content {
+            max-width: 1200px;
+            margin: auto;
+            padding: 2rem;
+        }
+
+        /* CHART */
+        .chart-container {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .chart-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .chart-wrapper {
+            height: 380px;
+            margin-top: 1.5rem;
+            position: relative;
+        }
+
+        canvas {
+            max-width: 100% !important;
+        }
+
+        /* STATS */
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .stat-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: rgba(16, 185, 129, .1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #10b981;
+            margin-bottom: .75rem;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: .8rem;
+            color: #6b7280;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.2rem;
+            color: #6b7280;
+            background: #fff;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+            <div class="logo-text">
+                <h1>EnergyWise </h1>
+                <span>Real-time Energy Dashboard</span>
+            </div>
+        </div>
+
+        <a href="index.html" class="home-button">
+            <i class="fas fa-home"></i> Home
+        </a>
+
+        <div class="status">
+            <div class="status-indicator">
+                <span class="status-dot"></span> Live Data
+            </div>
+            <div class="last-update" id="lastUpdate">Last updated: --:--</div>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <div class="chart-container">
+            <div class="chart-header">
+                <div>
+                    <h2>Real-time Energy Consumption</h2>
+                    <p id="chartSubtitle">Last 24 hours</p>
+                </div>
+                <div>
+                    <select id="timeRange">
+                        <option value="1h">Last Hour</option>
+                        <option value="24h" selected>Last 24 Hours</option>
+                        <option value="7d">Last 7 Days</option>
+                    </select>
+                    <button id="refreshChart"><i class="fas fa-sync-alt"></i></button>
+                </div>
+            </div>
+            <div class="chart-wrapper">
+                <canvas id="energyChart"></canvas>
+            </div>
+        </div>
+
+        <div class="stats-cards">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-bolt"></i></div>
+                <div class="stat-value" id="currentUsage">1.85 kW</div>
+                <div class="stat-label">CURRENT</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="stat-value" id="todayTotal">48.0 kWh</div>
+                <div class="stat-label">TODAY</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-mountain"></i></div>
+                <div class="stat-value" id="peakUsage">2.92 kW</div>
+                <div class="stat-label">PEAK</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-calculator"></i></div>
+                <div class="stat-value" id="avgUsage">2.00 kW</div>
+                <div class="stat-label">AVERAGE</div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>EnergyWise Pro • Live Monitoring</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        let chart;
+
+        function generateLabels(n) {
+            return Array.from({ length: n }, (_, i) => `${i + 1}`);
+        }
+        function generateData(n) {
+            return Array.from({ length: n }, () => (Math.random() * 2 + 1).toFixed(2));
+        }
+
+        function updateTime() {
+            document.getElementById("lastUpdate").textContent =
+                "Last updated: " + new Date().toLocaleTimeString();
+        }
+
+        function createChart(points) {
+            const ctx = document.getElementById("energyChart").getContext("2d");
+            if (chart) chart.destroy();
+
+            chart = new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: generateLabels(points),
+                    datasets: [{
+                        label: "Power Usage (kW)",
+                        data: generateData(points),
+                        borderColor: "#10b981",
+                        backgroundColor: "rgba(16,185,129,.15)",
+                        fill: true,
+                        tension: .4
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            updateStats(chart.data.datasets[0].data);
+            updateTime();
+        }
+
+        function updateStats(data) {
+            const nums = data.map(Number);
+            document.getElementById("currentUsage").textContent = nums.at(-1) + " kW";
+            document.getElementById("peakUsage").textContent = Math.max(...nums) + " kW";
+            document.getElementById("avgUsage").textContent =
+                (nums.reduce((a, b) => a + b, 0) / nums.length).toFixed(2) + " kW";
+            document.getElementById("todayTotal").textContent =
+                nums.reduce((a, b) => a + b, 0).toFixed(1) + " kWh";
+        }
+
+        document.getElementById("timeRange").addEventListener("change", e => {
+            createChart(e.target.value === "7d" ? 7 : e.target.value === "1h" ? 12 : 24);
+        });
+
+        document.getElementById("refreshChart").addEventListener("click", () => {
+            createChart(document.getElementById("timeRange").value === "7d" ? 7 : 24);
+        });
+
+        createChart(24);
+        setInterval(() => createChart(24), 30000);
+    </script>
+
+</body>
+
+</html>
