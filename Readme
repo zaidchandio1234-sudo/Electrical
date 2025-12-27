@@ -1,0 +1,48 @@
+# Electrical Project
+
+Electrical/
+│
+├── frontend/
+│   ├── index.html
+│   ├── css/
+│   └── js/
+|__ dataset
+|   |----1
+|    |----2
+│
+├── server/
+│   ├── api.py
+│   └── requirements.txt
+│
+└── README.md
+
+
+
+
+
+This project consists of a frontend interface and a backend API server. Follow the steps below to set up and run the project successfully.
+
+---
+
+## 📌 Requirements
+
+Before running the project, make sure you have the following installed:
+
+- Python (3.x recommended)
+- pip (Python package manager)
+- VS Code (recommended)
+- Live Server extension (for frontend)
+
+---
+
+## 📦 Install Dependencies
+
+First, install all the required Python libraries using the `requirements.txt` file.
+
+```bash
+pip install -r requirements.txt
+
+
+cd server
+python api.py
+
